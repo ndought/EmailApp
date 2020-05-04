@@ -3,6 +3,7 @@ package EmailApp;
 public class EmailAppMain {
 
     public static void main(String[] args) {
-	// write your code here
+
+        Email email1 = new Email("Noah", "Doughty");
     }
 }
