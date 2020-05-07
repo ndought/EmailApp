@@ -9,11 +9,11 @@ public class Email {
     private String lastName;
     private String password;
     private String department;
-    private int mailBoxCapacity;
+    private String email;
+    private String companySuffix = "aeycompany.com";
+    private int mailBoxCapacity = 100;
     private int defaultPasswordLength = 10;
     private String alternateEmail;    // class level variables used by calling this.<variable>
-
-//  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
 //  Constructor to receive first name and last name (1)
@@ -21,35 +21,32 @@ public class Email {
         // class level    local level >> 'this' keyword refers to class level variable hence this.firstName
         this.firstName  = firstName;
         this.lastName = lastName;
-        System.out.println("\nNOAH'S EMAIL SYSTEM");
-        System.out.println("\nEmail Created: " + this.firstName + " " + this.lastName + " ");
+        System.out.println("\n||  NOAH'S EMAIL SYSTEM  ||\n");
 //  ^^ (1) ^^
-
-
-//  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
 //      Call setDepartment method made in block (2)  >  also return the department (2)
         this.department = setDepartment();
-        System.out.println("Department: " + this.department + "\n");
         System.out.println("*** Please note that upon entering a department code ***\n *** a random password was generated for you.***\n ");
         // Using this. calls the class level variable i.e. this.department
 //  ^^ (2) ^^
 
 
-//  /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
 //      Call randomPassword method made in block (3)  > also returns a random password (3)
         this.password = randomPassword(defaultPasswordLength);
         System.out.println("Your randomly generated password is: " + this.password);
-    }
 
+
+//      Combine elements to generate email
+        email = firstName.toLowerCase() + "." + lastName.toLowerCase() + "@" + department + "." + companySuffix;
+        System.out.println("Your email is " + email);
+    }
 
 
 //  Ask for department method block (2)
     private String setDepartment() {
-        System.out.print("DEPARTMENT CODES:\n1 for Sales\n2 for Development\n3 for Accounting\n0 for None\nEnter Department Code: ");
+        System.out.print("New Employee: " + firstName + lastName + "\nDEPARTMENT CODES:\n1 for Sales\n2 for Development\n" +
+                "3 for Accounting\n0 for None\nEnter Department Code: ");
         Scanner in = new Scanner(System.in);
 
         int deptChoice = in.nextInt();
@@ -69,7 +66,6 @@ public class Email {
 //  ^^ (2) ^^
 
 
-//  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
 // Password method block > Generate a random password (3)
@@ -87,17 +83,42 @@ public class Email {
 //   ^^ (3) ^^
 
 
-//  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-
-
 
     // Set mailbox capacity
+    public void setMailBoxCapacity(int capacity) {
+        this.mailBoxCapacity = capacity;
+    }
 
     // Set the alternate email
+    public void setAlternateEmail(String altEmail) {
+        this.alternateEmail = altEmail;
+    }
 
     // Change the password
+    public void changePassword(String password) {
+        this.password = password;
+    }
+
+    public int getMailBoxCapacity() {
+        return mailBoxCapacity;
+    }
+
+    public String getAlternateEmail() {
+        return alternateEmail;
+    }
+
+    public String getNewPassword() {
+        return password;
+    }
+
+    public String showEmployeeInfo() {
+        return "DISPLAY NAME: " + firstName + " " + lastName + "\n" + "" +
+                "COMPANY EMAIL: " + email + "\n" +
+                "MAILBOX CAPACITY: " + mailBoxCapacity + " mb";
+    }
+
+
+
 
 
 }
